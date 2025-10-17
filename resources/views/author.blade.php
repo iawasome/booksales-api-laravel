@@ -1,30 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Data Author</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Author</title>
     <style>
-        body { font-family: Arial; margin: 40px; }
-        table { border-collapse: collapse; width: 50%; margin: auto; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #2ecc71; color: white; }
-        h2 { text-align: center; }
-        a { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #2ecc71; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
-    <h2>Daftar Author Buku</h2>
+    <h1>Daftar Author</h1>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Nama Author</th>
-        </tr>
-        @foreach ($authors as $a)
-        <tr>
-            <td>{{ $a['id'] }}</td>
-            <td>{{ $a['name'] }}</td>
-        </tr>
-        @endforeach
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Bio</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($authors as $author)
+                <tr>
+                    <td>{{ $author->id }}</td>
+                    <td>{{ $author->name }}</td>
+                    <td>{{ $author->bio }}</td>
+                    <td>
+                        @if($author->photo)
+                            <img src="{{ $author->photo }}" alt="{{ $author->name }}" width="50">
+                        @else
+                            N/A
+                        @endif
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4">Tidak ada data author.</td>
+                </tr>
+            @endforelse
+        </tbody>
     </table>
-    <a href="/">Lihat Data Genre</a>
 </body>
 </html>

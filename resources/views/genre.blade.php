@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Data Genre</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Genre</title>
     <style>
-        body { font-family: Arial; margin: 40px; }
-        table { border-collapse: collapse; width: 50%; margin: auto; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #3498db; color: white; }
-        h2 { text-align: center; }
-        a { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #3498db; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
-    <h2>Daftar Genre Buku</h2>
+    <h1>Daftar Genre</h1>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Nama Genre</th>
-        </tr>
-        @foreach ($genres as $g)
-        <tr>
-            <td>{{ $g['id'] }}</td>
-            <td>{{ $g['name'] }}</td>
-        </tr>
-        @endforeach
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Deskripsi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($genres as $genre)
+                <tr>
+                    <td>{{ $genre->id }}</td>
+                    <td>{{ $genre->name }}</td>
+                    <td>{{ $genre->description }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3">Tidak ada data genre.</td>
+                </tr>
+            @endforelse
+        </tbody>
     </table>
-    <a href="/authors">Lihat Data Author</a>
 </body>
 </html>
