@@ -38,3 +38,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/transactions/{transaction}', [TransactionController::class, 'show']);
     Route::put('/transactions/{transaction}', [TransactionController::class, 'update']);
 });
+
+Route::post('/register', [AuthController::class, 'register']);
